@@ -1,3 +1,24 @@
+// ----------------------------------------------------------------------------
+francoisrrr
+
+-- Description
+Code for a 2 players panel layout with 7 LED per player (4 Punch & 3 Kicks).
+
+-- LED map
+  KAIMANA->LED_K3->LED_K2->LED_K1->LED_P1->LED_P2->LED_P3->LED_P4->LED_2P1->LED_2P2->LED_2P3->LED_2P4->LED_2K3->LED_2K2->LED_2K1
+
+-- Modifications
+Code is based on the default from https://paradisearcadeshop.com
+ kaimana_custom.h   => LED mapping edit
+ kaimana.cpp        => deleted LED_JOY code from setLED()
+ kaimana.h          => added PINK color constant
+ animations.cpp     => updated trackled[] from 16 to 28 indexes
+                    => updated tourneyMode() with "panel2x7led" LED map
+ panel2x7led        => commented setLED() code for LED_JOY; LED_HOME; LED_SELECT; LED_START from pollSwitches()
+                    => deleted showStartup()
+                    => commented combo test from pollSwitches()
+
+// ----------------------------------------------------------------------------
 Paradise Arcade Shop Kaimana LED Driver Board
 Initial Release October 15, 2013
 
