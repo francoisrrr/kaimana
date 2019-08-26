@@ -1,0 +1,6 @@
+{
+    "board": "arduino:avr:leonardo",
+    "programmer": "AVRISP mkII",
+    "port": "/dev/cu.usbmodem14301",
+    "sketch": "default-no-modify/default.ino"
+}

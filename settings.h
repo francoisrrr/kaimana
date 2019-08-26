@@ -14,7 +14,7 @@ _LED_ORDER_NO_MENU_NO_JOY
 ##LED BRIGHTNESS##
 Set your brightness to a value between 0 and 1 (example 0.5 is half bright)
 */
-#define _LED_BRIGHTNESS 1
+#define _LED_BRIGHTNESS 0.5
 
 /*
 ##IDLE COLOR##
@@ -30,7 +30,7 @@ WHITE
 MAGENTA
 ORANGE 
 */
-#define _IDLE_COLOR PURPLE
+#define _IDLE_COLOR WHITE
 
 /*
 ##ON PRESS BUTTON COLOR##
@@ -40,7 +40,7 @@ Add a // to the begginning of the _COLOR_RANDOM line to use the color on press.
 //#define _COLOR_RANDOM
 
 //Change to BLACK to have them remain off.
-#define _ON_PRESS_BTN_COLOR WHITE
+#define _ON_PRESS_BTN_COLOR BLACK
 
 /*
 ##START UP ANIMATION##
@@ -49,7 +49,7 @@ _START_DEFAULT_ANIMATION
 _START_WALK_ANIMATION
 _START_STAR_ANIMATION
 */
-#define _STARTUP_ANIMATION _START_WALK_ANIMATION
+#define _STARTUP_ANIMATION _START_DEFAULT_ANIMATION
 
 /*
 ##IDLE ANIMATION##
@@ -80,3 +80,11 @@ _IDLE_BREATHE_MAC_ANIMATION
 #define _IDLE_BTN_P3_COLOR GREEN
 #define _IDLE_BTN_P4_COLOR BLUE
 
+#define _IDLE_BTN_2K1_COLOR BLACK
+#define _IDLE_BTN_2K2_COLOR BLACK
+#define _IDLE_BTN_2K3_COLOR BLACK
+//#define _IDLE_BTN_K4_COLOR YELLOW
+#define _IDLE_BTN_2P1_COLOR RED
+#define _IDLE_BTN_2P2_COLOR YELLOW
+#define _IDLE_BTN_2P3_COLOR GREEN
+#define _IDLE_BTN_2P4_COLOR BLUE
