@@ -84,20 +84,23 @@
   #define  LED_2K2     24
   #define  LED_2K2_B   25 
   #define  LED_2K1     26
-  #define  LED_2K1_B   27 
+  #define  LED_2K1_B   27
 
-  #define  LED_COUNT   28
+  #define  LED_START    28
+  #define  LED_START_B  29 
+
+  #define  LED_COUNT   30
 #endif
 
 // general definitions for delays and other customizable features
 // specific to ParadiseArcadeShop.com Kaimana board (PS360+LED)
 //
-#define  BOOT_COLOR_DELAY         200    // value in miliseconds
-#define  FAST_COLOR_DELAY         150    // value in miliseconds
-#define  BOOT_COMPLETE_DELAY      500    // value in miliseconds
-#define  MAIN_LOOP_DELAY           50    // value in miliseconds - used main loop
-#define  IDLE_TIMEOUT_SECONDS      60    // value in seconds - normally 60 or 30 seconds but set very short for testing
-#define  IDLE_ANIMATION_DELAY       5    // value in miliseconds - use smaller value for faster idle animation playback
+#define  BOOT_COLOR_DELAY         200    // value in milliseconds
+#define  FAST_COLOR_DELAY         150    // value in milliseconds
+#define  BOOT_COMPLETE_DELAY      500    // value in milliseconds
+#define  MAIN_LOOP_DELAY           10    // value in milliseconds - used main loop
+#define  IDLE_TIMEOUT_SECONDS     300    // value in seconds - normally 60 or 30 seconds but set very short for testing
+#define  IDLE_ANIMATION_DELAY      10    // value in milliseconds - use smaller value for faster idle animation playback
 #define  T_DELAY      			  250    
 
 // definitions of RGB values use by random color generator: setLEDRandomColor(int)
