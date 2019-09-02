@@ -1,3 +1,8 @@
+/* 
+  francoisrrr
+  => LED mapping edit
+*/
+
 //  kaimana_local.h
 //
 //  Copyright 2013 Paradise Arcade Shop, ParadiseArcadeShop.com

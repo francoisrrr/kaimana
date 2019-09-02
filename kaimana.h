@@ -1,3 +1,9 @@
+/* 
+  francoisrrr
+  => added PINK color constant
+*/
+
+
 //  kaimana.h
 //
 //  Copyright 2013 Paradise Arcade Shop, ParadiseArcadeShop.com

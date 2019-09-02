@@ -1,3 +1,9 @@
+/* 
+  francoisrrr
+  => deleted/commented LED_JOY; LED_HOME; LED_SELECT; LED_START; LED_K4
+  => updated trackled[] from 16 to 28 indexes
+ */
+
 //  kaimana.cpp
 //
 //  Copyright 2013 Paradise Arcade Shop, ParadiseArcadeShop.com

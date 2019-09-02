@@ -1,4 +1,10 @@
-//
+/* 
+  francoisrrr
+  => deleted/commented LED_JOY; LED_HOME; LED_SELECT; LED_START; LED_K4
+  => deleted showStartup() as it is redundant with defaultStartup() defined in animations.cpp
+  => deleted combo test from pollSwitches()
+*/
+
 //  Copyright 2013 Paradise Arcade Shop, ParadiseArcadeShop.com  
 //  All rights reserved.  Use is subject to license terms.
 //
