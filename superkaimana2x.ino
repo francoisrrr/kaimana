@@ -121,11 +121,7 @@ void loop()
 				if( millis() > ulTimeout )
 				{
 				_IDLE_ANIMATION
-				} else if (millis() > ulTimeout*5)
-        {
-          tournamentMode=true;
-          tourneyModeActivate();
-        }
+				}
 			}
 		}
     else

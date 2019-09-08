@@ -346,37 +346,58 @@ int animation_idle(void)
   int  index;
   int  i;
 
+//&&&&&&&
+  unsigned long  ulTimeout;
+  // initialize timeout value to now + some seconds
+  ulTimeout = millis() + ( (unsigned long)IDLE_TIMEOUT_SECONDS * 1000 * 5 );
+//&&&&&&&
+
   // set initial color to BLACK
   kaimana.setALL(BLACK);
 
   while(true)
   {
-    for(index=0;index<IDLE_SIZE;++index)
+    // no switches active so test for start of idle timeout
+    if( millis() < ulTimeout )
+    // Start Animation
     {
-      // update strip with new color2
-      for(i=0;i<LED_COUNT;++i)
+      for(index=0;index<IDLE_SIZE;++index)
       {
-        kaimana.setLED(
-          i,
-          pgm_read_byte_near(&colorCycleData[((index+IDLE_OFFSET_2+((LED_COUNT-i)*IDLE_OFFSET))%IDLE_SIZE)]),
-          pgm_read_byte_near(&colorCycleData[((index+IDLE_OFFSET_1+((LED_COUNT-i)*IDLE_OFFSET))%IDLE_SIZE)]),
-          pgm_read_byte_near(&colorCycleData[((index+IDLE_OFFSET_0+((LED_COUNT-i)*IDLE_OFFSET))%IDLE_SIZE)])
-        );
+        // update strip with new color2
+        for(i=0;i<LED_COUNT;++i)
+        {
+          kaimana.setLED(
+            i,
+            pgm_read_byte_near(&colorCycleData[((index+IDLE_OFFSET_2+((LED_COUNT-i)*IDLE_OFFSET))%IDLE_SIZE)]),
+            pgm_read_byte_near(&colorCycleData[((index+IDLE_OFFSET_1+((LED_COUNT-i)*IDLE_OFFSET))%IDLE_SIZE)]),
+            pgm_read_byte_near(&colorCycleData[((index+IDLE_OFFSET_0+((LED_COUNT-i)*IDLE_OFFSET))%IDLE_SIZE)])
+          );
+        }
+
+        // update the leds with new/current colors in the array
+        kaimana.updateALL();
+
+        // test all switches and exit idle animation if active switch found
+        for(i=0;i<SWITCH_COUNT;++i)
+        {
+          if( !digitalRead(switchPins[i]) )
+            return(false);
+        }
+
+        // place test for switches here and use calculated timer not delay
+        //
+        delay( IDLE_ANIMATION_DELAY );
       }
-
-      // update the leds with new/current colors in the array
-      kaimana.updateALL();
-
+    } else
+    // Enter Sleep Mode
+    {
+      kaimana.setALL(BLACK);
       // test all switches and exit idle animation if active switch found
       for(i=0;i<SWITCH_COUNT;++i)
       {
         if( !digitalRead(switchPins[i]) )
           return(false);
       }
-
-      // place test for switches here and use calculated timer not delay
-      //
-      delay( IDLE_ANIMATION_DELAY );
     }
   }
 }
