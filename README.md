@@ -1,17 +1,13 @@
 -- LED layout
   KAIMANA->LED_K3->LED_K2->LED_K1->LED_P1->LED_P2->LED_P3->LED_P4->LED_2P1->LED_2P2->LED_2P3->LED_2P4->LED_2K3->LED_2K2->LED_2K1
 
--- Instructions
+-- Info
   Combo animations are deactivated
   LED stay ON to highlight the button layout
-  Tournament Mode is activated by pressing START for 5s
 
--- To Do
-  => Pre-programmed btnlayout : JAMMA, SNK, ARCSYS, CAPCOM
-  => Switch between btnlayout by pressing START for 1s
-  => Load/Save btnlayout in EEPROM
-
-
+-- Instructions
+  Cycle between btnlayout by a short press on START
+  Activate Tournament Mode by a long press on START
 
 
 Paradise Arcade Shop Kaimana LED Driver Board

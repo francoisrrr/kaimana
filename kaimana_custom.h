@@ -104,7 +104,7 @@
 #define  FAST_COLOR_DELAY         150    // value in milliseconds
 #define  BOOT_COMPLETE_DELAY      500    // value in milliseconds
 #define  MAIN_LOOP_DELAY           10    // value in milliseconds - used main loop
-#define  IDLE_TIMEOUT_SECONDS     300    // value in seconds - normally 60 or 30 seconds but set very short for testing
+#define  IDLE_TIMEOUT_SECONDS      60    // value in seconds - normally 60 or 30 seconds but set very short for testing
 #define  IDLE_ANIMATION_DELAY      10    // value in milliseconds - use smaller value for faster idle animation playback
 #define  T_DELAY      			  250    
 
