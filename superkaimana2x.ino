@@ -1,3 +1,11 @@
+/* 
+  francoisrrr
+  => deleted/commented LED_JOY; LED_HOME; LED_SELECT; LED_START; LED_K4
+  => deleted showStartup() as it is redundant with defaultStartup() defined in animations.cpp
+  => deleted combo test from pollSwitches()
+*/
+
+
 #define __PROG_TYPES_COMPAT__
 #include <avr/io.h>
 #include <avr/pgmspace.h>
@@ -5,16 +13,8 @@
 #include "kaimana.h"
 #include "kaimana_custom.h"
 #include "animations.h"
+#include <EEPROM.h> // EEPROM Libray is necessary to save button layout configuration after power off
 
-// EEPROM Libray is necessary to save button layout configuration after power off
-#include <EEPROM.h>
-
-/* 
-  francoisrrr
-  => deleted/commented LED_JOY; LED_HOME; LED_SELECT; LED_START; LED_K4
-  => deleted showStartup() as it is redundant with defaultStartup() defined in animations.cpp
-  => deleted combo test from pollSwitches()
-*/
 
 //  Copyright 2013 Paradise Arcade Shop, ParadiseArcadeShop.com  
 //  All rights reserved.  Use is subject to license terms.
@@ -47,13 +47,8 @@ int tourneypollSwitches(void);
 void setLEDRandomColor(int index);
 boolean tournamentMode = false;
 int holdTimeout = 0;
-int aniTimeout= 0;
-int selection = 0;
 
-//-- Button Layout Setup --
-
-// read selected button layout from EEPROM at adress 0
-int layoutselect=EEPROM.read(0);
+int layoutselect=EEPROM.read(0); // read user selected button layout from EEPROM at adress 0
 
 /*
   Pre-set button layouts
@@ -61,8 +56,7 @@ int layoutselect=EEPROM.read(0);
     P1->P2->P3->P4->K1->K2->K3->2P1->2P2->2P3->2P4->2K1->2K2->2K3
 */
 
-
-// arcade cab
+// Arcade cabinet layouts
 const int btnlayout[4][14][3] = {
   // 2 Buttons JAMMA
   {{RED},{RED},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLUE},{BLUE},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK}},
@@ -74,17 +68,13 @@ const int btnlayout[4][14][3] = {
   {{RED},{RED},{RED},{BLACK},{RED},{RED},{RED},{BLUE},{BLUE},{BLUE},{BLACK},{BLUE},{BLUE},{BLUE}}
 };
 
-/* 
-//fightstick
-const int btnlayout[2][14][3] = {
+// Fighstick layouts
+/* const int btnlayout[2][14][3] = {
   // 4 Buttons SNK
-  {{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK},{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK}},
+  {{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK}},
   // 6 Buttons CAPCOM
-  {{RED},{RED},{RED},{BLACK},{RED},{RED},{RED},{BLUE},{BLUE},{BLUE},{BLACK},{BLUE},{BLUE},{BLUE}}
-};
- */
-
-//-------------------------
+  {{RED},{RED},{RED},{BLACK},{RED},{RED},{RED},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK}}
+}; */
 
 // ParadiseArcadeShop.com Kaimana features initialzied when Kaimana class instantiated
 Kaimana kaimana;
@@ -133,7 +123,7 @@ void loop()
       }
     }    
     // delay a little to avoid flickering (yea, updates happens really, really fast!)
-    //delay( MAIN_LOOP_DELAY );
+    delay( MAIN_LOOP_DELAY );
   } 
 }
 
@@ -151,8 +141,6 @@ int pollSwitches(unsigned long  ulTimeout)
   static int  i;
   static int  j;  
   static int  firsttime;
-  static uint16_t  joystickDirection;
-  static uint16_t  switchActivity;
 
   // reset LED status
   if (firsttime == 1)
@@ -163,27 +151,28 @@ int pollSwitches(unsigned long  ulTimeout)
       firsttime = 0;
     }
   }
-
-  joystickDirection = ATTACK_NONE;
-  // complex special case for joystick but it's worth the effort
-  if(!digitalRead(PIN_RIGHT))
-    joystickDirection |= ATTACK_RIGHT;
-  if(!digitalRead(PIN_LEFT))
-    joystickDirection |= ATTACK_LEFT;
-  if(!digitalRead(PIN_DOWN))
-    joystickDirection |= ATTACK_DOWN;
-  if(!digitalRead(PIN_UP))
-    joystickDirection |= ATTACK_UP;
   
-  // clear results for switch activity
-  switchActivity = ATTACK_NONE;
+  // zero active switch counter (note: 4 way joystick counts as 1)
+  iActiveSwitchCount = 0;
+
+  // complex special case for joystick but it's worth the effort
+  if(!digitalRead(PIN_RIGHT)){
+    iActiveSwitchCount ++;
+  }
+  if(!digitalRead(PIN_LEFT)){
+    iActiveSwitchCount ++;
+  }
+  if(!digitalRead(PIN_DOWN)){
+    iActiveSwitchCount ++;
+  } 
+  if(!digitalRead(PIN_UP)){
+    iActiveSwitchCount ++;
+  }
 
   // ### LED_P1
   // test switch and set LED based on result
   if(!digitalRead(PIN_P1))
-  {
-    switchActivity |= ATTACK_P1;
-    
+  {    
     // switch is active
     if(iLED[LED_P1] == true)
     {
@@ -211,9 +200,7 @@ int pollSwitches(unsigned long  ulTimeout)
   // ### LED_P2
   // test switch and set LED based on result
   if(!digitalRead(PIN_P2))
-  {
-    switchActivity |= ATTACK_P2;
-    
+  {    
     // switch is active
     if(iLED[LED_P2] == true)
     {
@@ -241,9 +228,7 @@ int pollSwitches(unsigned long  ulTimeout)
   // ### LED_P3
   // test switch and set LED based on result
   if(!digitalRead(PIN_P3))
-  {
-    switchActivity |= ATTACK_P3;
-    
+  {    
     // switch is active
     if(iLED[LED_P3] == true)
     {
@@ -271,9 +256,7 @@ int pollSwitches(unsigned long  ulTimeout)
   // ### LED_P4
   // test switch and set LED based on result
   if(!digitalRead(PIN_P4))
-  {
-    switchActivity |= ATTACK_P4;
-    
+  {    
     // switch is active
     if(iLED[LED_P4] == true)
     {
@@ -301,9 +284,7 @@ int pollSwitches(unsigned long  ulTimeout)
   // ### LED_K1
   // test switch and set LED based on result
   if(!digitalRead(PIN_K1))
-  {
-    switchActivity |= ATTACK_K1;
-    
+  {    
     // switch is active
     if(iLED[LED_K1] == true)
     {
@@ -331,9 +312,7 @@ int pollSwitches(unsigned long  ulTimeout)
   // ### LED_K2
   // test switch and set LED based on result
   if(!digitalRead(PIN_K2))
-  {
-    switchActivity |= ATTACK_K2;
-    
+  {    
     // switch is active
     if(iLED[LED_K2] == true)
     {
@@ -361,9 +340,7 @@ int pollSwitches(unsigned long  ulTimeout)
   // ### LED_K3
   // test switch and set LED based on result
   if(!digitalRead(PIN_K3))
-  {
-    switchActivity |= ATTACK_K3;
-    
+  {    
     // switch is active
     if(iLED[LED_K3] == true)
     {
@@ -399,15 +376,14 @@ int pollSwitches(unsigned long  ulTimeout)
       iLED[LED_START] = true;
 	    //Button hold
       holdTimeout += 1;
-      if(holdTimeout == 500)
+      if(holdTimeout == 1000*5/MAIN_LOOP_DELAY)
       // cycle button layout
       {
         layoutselect = (layoutselect<sizeof(btnlayout)/sizeof(*btnlayout)-1)?layoutselect+1:0;
-
         // write to EEPROM at adress 0
         EEPROM.update(0, layoutselect);
       }
-      else if (holdTimeout == 2000)
+      else if (holdTimeout == 2000*5/MAIN_LOOP_DELAY)
       // activate tourneymode
       {
         tournamentMode = true;
@@ -428,9 +404,6 @@ int pollSwitches(unsigned long  ulTimeout)
     iLED[LED_START] = false;
 	  holdTimeout=0;
   }
-
-  // zero active switch counter (note: 4 way joystick counts as 1)
-  iActiveSwitchCount = 0;
   
   // set LED color based on switch
   for(i=0;i<LED_COUNT;++i)
@@ -453,11 +426,6 @@ int tourneypollSwitches(void)
 {
   static int  iLED[LED_COUNT];
   static int  iActiveSwitchCount = 0;
-  static int  i;
-  static int  j;
-  static int  firsttime;
-  static uint16_t  joystickDirection;
-  static uint16_t  switchActivity;
 
   // test switch and set LED based on result
   if(!digitalRead(PIN_START))
@@ -471,7 +439,7 @@ int tourneypollSwitches(void)
       tourneyModeDeactivate();
 		}
     ++iActiveSwitchCount;
-	  delay(MAIN_LOOP_DELAY); 
+	  delay(MAIN_LOOP_DELAY);
   }
   else
   {

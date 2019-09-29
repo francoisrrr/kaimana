@@ -14,7 +14,7 @@ _LED_ORDER_NO_MENU_NO_JOY
 ##LED BRIGHTNESS##
 Set your brightness to a value between 0 and 1 (example 0.5 is half bright)
 */
-#define _LED_BRIGHTNESS 0.25
+#define _LED_BRIGHTNESS 0.5
 
 /*
 ##IDLE COLOR##

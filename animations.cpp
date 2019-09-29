@@ -2,6 +2,7 @@
   francoisrrr
   => deleted/commented LED_JOY; LED_HOME; LED_SELECT; LED_START; LED_K4
   => updated trackled[] from 16 to 28 indexes
+  => added sleep mode to animation_idle()
  */
 
 //  kaimana.cpp
@@ -347,9 +348,9 @@ int animation_idle(void)
   int  i;
 
 //&&&&&&&
-  unsigned long  ulTimeout;
-  // initialize timeout value to now + some seconds
-  ulTimeout = millis() + ( (unsigned long)IDLE_TIMEOUT_SECONDS * 1000 * 5 );
+  unsigned long  ulSleepTimeout;
+  // initialize sleep timeout value to now + some seconds
+  ulSleepTimeout = millis() + ( (unsigned long)IDLE_TIMEOUT_SECONDS * 1000 * 5 );
 //&&&&&&&
 
   // set initial color to BLACK
@@ -358,7 +359,7 @@ int animation_idle(void)
   while(true)
   {
     // no switches active so test for start of idle timeout
-    if( millis() < ulTimeout )
+    if( millis() < ulSleepTimeout )
     // Start Animation
     {
       for(index=0;index<IDLE_SIZE;++index)
