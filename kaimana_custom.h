@@ -1,6 +1,9 @@
 /* 
   francoisrrr
-  => LED mapping edit
+  =>  LED wiring edit
+      LED wiring is as follows :
+      KAIMANA->LED_K3->LED_K2->LED_K1->LED_P1->LED_P2->LED_P3->LED_P4->LED_2P1->LED_2P2->LED_2P3->LED_2P4->LED_2K3->LED_2K2->LED_2K1
+  */
 */
 
 //  kaimana_local.h
@@ -58,8 +61,8 @@
 #ifdef _LED_ORDER_FULL
   //  Map function names to Kaimana J2 LED index numbers
   /*  
-    Code for a 2 players panel layout with 7 LED per player (4 Punch & 3 Kicks).
-    LED mapping is as follows :
+    Code for 1UP or 2UP panel layout with 7 LED per player (4 Punch & 3 Kicks).
+    LED wiring is as follows :
     KAIMANA->LED_K3->LED_K2->LED_K1->LED_P1->LED_P2->LED_P3->LED_P4->LED_2P1->LED_2P2->LED_2P3->LED_2P4->LED_2K3->LED_2K2->LED_2K1
   */
   #define  LED_K3      0

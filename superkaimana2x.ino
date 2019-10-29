@@ -56,25 +56,15 @@ int layoutselect=EEPROM.read(0); // read user selected button layout from EEPROM
     P1->P2->P3->P4->K1->K2->K3->2P1->2P2->2P3->2P4->2K1->2K2->2K3
 */
 
-// Arcade cabinet layouts
+// Preset layouts
 const int btnlayout[4][14][3] = {
-  // 2 Buttons JAMMA
-  {{RED},{RED},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLUE},{BLUE},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK}},
   // 3 Buttons JAMMA
   {{RED},{RED},{RED},{BLACK},{BLACK},{BLACK},{BLACK},{BLUE},{BLUE},{BLUE},{BLACK},{BLACK},{BLACK},{BLACK}},
-  // 4 Buttons SNK
-  {{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK},{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK}},
   // 6 Buttons CAPCOM
-  {{RED},{RED},{RED},{BLACK},{RED},{RED},{RED},{BLUE},{BLUE},{BLUE},{BLACK},{BLUE},{BLUE},{BLUE}}
+  {{RED},{RED},{RED},{BLACK},{RED},{RED},{RED},{BLUE},{BLUE},{BLUE},{BLACK},{BLUE},{BLUE},{BLUE}},
+  // 4 Buttons SNK
+  {{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK},{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK}}
 };
-
-// Fighstick layouts
-/* const int btnlayout[2][14][3] = {
-  // 4 Buttons SNK
-  {{RED},{YELLOW},{GREEN},{BLUE},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK}},
-  // 6 Buttons CAPCOM
-  {{RED},{RED},{RED},{BLACK},{RED},{RED},{RED},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK},{BLACK}}
-}; */
 
 // ParadiseArcadeShop.com Kaimana features initialzied when Kaimana class instantiated
 Kaimana kaimana;

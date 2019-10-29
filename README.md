@@ -1,14 +1,12 @@
--- LED layout
-  KAIMANA->LED_K3->LED_K2->LED_K1->LED_P1->LED_P2->LED_P3->LED_P4->LED_2P1->LED_2P2->LED_2P3->LED_2P4->LED_2K3->LED_2K2->LED_2K1
-
--- Info
-  Combo animations are deactivated
-  LED stay ON to highlight the button layout
+-- Code for 1UP or 2UP panel layout with 7 LED per player (4 Punch & 3 Kicks).
+    LED wiring is as follows :
+    KAIMANA->LED_K3->LED_K2->LED_K1->LED_P1->LED_P2->LED_P3->LED_P4->LED_2P1->LED_2P2->LED_2P3->LED_2P4->LED_2K3->LED_2K2->LED_2K1
 
 -- Instructions
-  Cycle between btnlayout by a short press on START
-  Activate Tournament Mode by a long press on START
-
+    Cycle between layout by a long press on START
+    Activate Tournament Mode by a very long press on START
+    Combo animations are deactivated
+    LED stay ON to highlight the button layout
 
 Paradise Arcade Shop Kaimana LED Driver Board
 Initial Release October 15, 2013
